@@ -1,0 +1,308 @@
+{
+  "path": "/dev/hidraw2",
+  "vendor_id": 13652,
+  "product_id": 62723,
+  "serial_number": "",
+  "release_number": 265,
+  "manufacturer_string": "Compx",
+  "product_string": "VGN Mouse 2.4G Receiver",
+  "usage_page": 1,
+  "usage": 6,
+  "interface_number": 0,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw3",
+  "vendor_id": 13652,
+  "product_id": 62723,
+  "serial_number": "",
+  "release_number": 265,
+  "manufacturer_string": "Compx",
+  "product_string": "VGN Mouse 2.4G Receiver",
+  "usage_page": 65285,
+  "usage": 0,
+  "interface_number": 1,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw3",
+  "vendor_id": 13652,
+  "product_id": 62723,
+  "serial_number": "",
+  "release_number": 265,
+  "manufacturer_string": "Compx",
+  "product_string": "VGN Mouse 2.4G Receiver",
+  "usage_page": 65283,
+  "usage": 0,
+  "interface_number": 1,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw3",
+  "vendor_id": 13652,
+  "product_id": 62723,
+  "serial_number": "",
+  "release_number": 265,
+  "manufacturer_string": "Compx",
+  "product_string": "VGN Mouse 2.4G Receiver",
+  "usage_page": 12,
+  "usage": 1,
+  "interface_number": 1,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw3",
+  "vendor_id": 13652,
+  "product_id": 62723,
+  "serial_number": "",
+  "release_number": 265,
+  "manufacturer_string": "Compx",
+  "product_string": "VGN Mouse 2.4G Receiver",
+  "usage_page": 1,
+  "usage": 128,
+  "interface_number": 1,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw3",
+  "vendor_id": 13652,
+  "product_id": 62723,
+  "serial_number": "",
+  "release_number": 265,
+  "manufacturer_string": "Compx",
+  "product_string": "VGN Mouse 2.4G Receiver",
+  "usage_page": 65282,
+  "usage": 2,
+  "interface_number": 1,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw3",
+  "vendor_id": 13652,
+  "product_id": 62723,
+  "serial_number": "",
+  "release_number": 265,
+  "manufacturer_string": "Compx",
+  "product_string": "VGN Mouse 2.4G Receiver",
+  "usage_page": 65284,
+  "usage": 2,
+  "interface_number": 1,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw4",
+  "vendor_id": 13652,
+  "product_id": 62723,
+  "serial_number": "",
+  "release_number": 265,
+  "manufacturer_string": "Compx",
+  "product_string": "VGN Mouse 2.4G Receiver",
+  "usage_page": 1,
+  "usage": 2,
+  "interface_number": 2,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw4",
+  "vendor_id": 13652,
+  "product_id": 62723,
+  "serial_number": "",
+  "release_number": 265,
+  "manufacturer_string": "Compx",
+  "product_string": "VGN Mouse 2.4G Receiver",
+  "usage_page": 1,
+  "usage": 1,
+  "interface_number": 2,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw1",
+  "vendor_id": 1165,
+  "product_id": 51558,
+  "serial_number": "",
+  "release_number": 5120,
+  "manufacturer_string": "ITE Tech. Inc.",
+  "product_string": "ITE Device(8176)",
+  "usage_page": 65417,
+  "usage": 16,
+  "interface_number": 0,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw1",
+  "vendor_id": 1165,
+  "product_id": 51558,
+  "serial_number": "",
+  "release_number": 5120,
+  "manufacturer_string": "ITE Tech. Inc.",
+  "product_string": "ITE Device(8176)",
+  "usage_page": 1,
+  "usage": 6,
+  "interface_number": 0,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw1",
+  "vendor_id": 1165,
+  "product_id": 51558,
+  "serial_number": "",
+  "release_number": 5120,
+  "manufacturer_string": "ITE Tech. Inc.",
+  "product_string": "ITE Device(8176)",
+  "usage_page": 12,
+  "usage": 1,
+  "interface_number": 0,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw1",
+  "vendor_id": 1165,
+  "product_id": 51558,
+  "serial_number": "",
+  "release_number": 5120,
+  "manufacturer_string": "ITE Tech. Inc.",
+  "product_string": "ITE Device(8176)",
+  "usage_page": 1,
+  "usage": 12,
+  "interface_number": 0,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw1",
+  "vendor_id": 1165,
+  "product_id": 51558,
+  "serial_number": "",
+  "release_number": 5120,
+  "manufacturer_string": "ITE Tech. Inc.",
+  "product_string": "ITE Device(8176)",
+  "usage_page": 1,
+  "usage": 128,
+  "interface_number": 0,
+  "bus_type": "BusType.USB"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw0",
+  "vendor_id": 1267,
+  "product_id": 12717,
+  "serial_number": "",
+  "release_number": 0,
+  "manufacturer_string": "",
+  "product_string": "MSFT0001:01 04F3:31AD",
+  "usage_page": 1,
+  "usage": 2,
+  "interface_number": -1,
+  "bus_type": "BusType.I2C"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw0",
+  "vendor_id": 1267,
+  "product_id": 12717,
+  "serial_number": "",
+  "release_number": 0,
+  "manufacturer_string": "",
+  "product_string": "MSFT0001:01 04F3:31AD",
+  "usage_page": 1,
+  "usage": 1,
+  "interface_number": -1,
+  "bus_type": "BusType.I2C"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw0",
+  "vendor_id": 1267,
+  "product_id": 12717,
+  "serial_number": "",
+  "release_number": 0,
+  "manufacturer_string": "",
+  "product_string": "MSFT0001:01 04F3:31AD",
+  "usage_page": 65280,
+  "usage": 1,
+  "interface_number": -1,
+  "bus_type": "BusType.I2C"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw0",
+  "vendor_id": 1267,
+  "product_id": 12717,
+  "serial_number": "",
+  "release_number": 0,
+  "manufacturer_string": "",
+  "product_string": "MSFT0001:01 04F3:31AD",
+  "usage_page": 13,
+  "usage": 5,
+  "interface_number": -1,
+  "bus_type": "BusType.I2C"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw0",
+  "vendor_id": 1267,
+  "product_id": 12717,
+  "serial_number": "",
+  "release_number": 0,
+  "manufacturer_string": "",
+  "product_string": "MSFT0001:01 04F3:31AD",
+  "usage_page": 13,
+  "usage": 34,
+  "interface_number": -1,
+  "bus_type": "BusType.I2C"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw0",
+  "vendor_id": 1267,
+  "product_id": 12717,
+  "serial_number": "",
+  "release_number": 0,
+  "manufacturer_string": "",
+  "product_string": "MSFT0001:01 04F3:31AD",
+  "usage_page": 13,
+  "usage": 14,
+  "interface_number": -1,
+  "bus_type": "BusType.I2C"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw0",
+  "vendor_id": 1267,
+  "product_id": 12717,
+  "serial_number": "",
+  "release_number": 0,
+  "manufacturer_string": "",
+  "product_string": "MSFT0001:01 04F3:31AD",
+  "usage_page": 13,
+  "usage": 34,
+  "interface_number": -1,
+  "bus_type": "BusType.I2C"
+}
+----------------------------------------------------------------------
+{
+  "path": "/dev/hidraw0",
+  "vendor_id": 1267,
+  "product_id": 12717,
+  "serial_number": "",
+  "release_number": 0,
+  "manufacturer_string": "",
+  "product_string": "MSFT0001:01 04F3:31AD",
+  "usage_page": 13,
+  "usage": 34,
+  "interface_number": -1,
+  "bus_type": "BusType.I2C"
+}
+----------------------------------------------------------------------

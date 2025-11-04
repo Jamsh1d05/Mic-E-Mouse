@@ -6,7 +6,8 @@ import matplotlib
 from datetime import datetime
 import json
 
-matplotlib.use('TkAgg') 
+matplotlib.use('TkAgg')
+
 
 class MouseVibrationAnalyzer:
     def __init__(self, sample_rate=1000):
@@ -14,42 +15,68 @@ class MouseVibrationAnalyzer:
         self.device = None
         self.vendor_id = None
         self.product_id = None
+        self.usage_page = None
+        self.usage = None
+        self.path = None
         self.raw_data = []
         self.movements = []
         self.recording = False
 
     def find_mouse(self):
-        """Поиск HID-устройства типа мышь"""
-        print("🔍 Поиск мыши...")
+        print("Searching mouse...")
+        mice = []
+
         for dev in hid.enumerate():
-            product = str(dev.get("product_string", "")).lower()
+            vendor_id = dev["vendor_id"]
+            product_id = dev["product_id"]
             usage_page = dev.get("usage_page", 0)
             usage = dev.get("usage", 0)
-            if (usage_page == 0x01 and usage == 0x02) or "mouse" in product:
-                self.vendor_id = dev["vendor_id"]
-                self.product_id = dev["product_id"]
-                print(f"Found mouse: {product}")
-                print(f"   VID: 0x{self.vendor_id:04x}, PID: 0x{self.product_id:04x}")
-                return True
-        print("Mouse not found")
-        return False
+            product = str(dev.get("product_string", "")).strip()
+            interface_number = dev.get("interface_number", -1)
+            path = dev["path"].decode() if isinstance(dev["path"], bytes) else dev["path"]
+
+            # Match your specific VGN F1 MOBA
+            if vendor_id == 0x3554 and product_id == 0xf506 and dev.get("interface_number") == 2:
+                mice.append({
+                    "path": path,
+                    "usage_page": usage_page,
+                    "usage": usage,
+                    "interface_number": interface_number,
+                    "product": product
+                })
+
+        if not mice:
+            print("No compatible mouse interface found.")
+            return False
+
+        preferred = next((m for m in mice if m["interface_number"] in [1, 2]), mice[0])
+
+        self.path = preferred["path"]
+        self.vendor_id = 0x3554
+        self.product_id = 0xf506
+        self.usage_page = preferred["usage_page"]
+        self.usage = preferred["usage"]
+
+        print(f"Mouse found: {preferred['product']}")
+        print(f"   Interface: {preferred['interface_number']}, Path: {preferred['path']}")
+        return True
+
 
     def connect(self):
-        """Connecting to HID device"""
-        if self.vendor_id is None or self.product_id is None:
-            print("Device is not selected")
+        if not self.path:
+            print("Нет пути к устройству HID")
             return False
         try:
-            self.device = hid.Device(self.vendor_id, self.product_id)
-            self.device.nonblocking = True
+            self.device = hid.device()
+            self.device.open_path(self.path.encode() if isinstance(self.path, str) else self.path)
+            self.device.set_nonblocking(True)
             print("Connected to HID device")
             return True
         except Exception as e:
-            print(f"Connection Error: {e}")
+            print(f"Connection error: {e}")
             return False
 
-    def record_raw(self, duration=15):
-        """Recording raw HID data from mouse"""
+    def record_raw(self, duration=10):
         if not self.device:
             print("No active device")
             return False
@@ -57,33 +84,32 @@ class MouseVibrationAnalyzer:
         print(f"Starting record for {duration} seconds...")
         self.raw_data = []
         start_time = time.time()
-        self.recording = True
         packet_count = 0
 
         try:
             while time.time() - start_time < duration:
-                data = self.device.read(64)
+                data = self.device.read(128) 
                 if data:
                     ts = time.time() - start_time
                     self.raw_data.append((ts, bytes(data)))
                     packet_count += 1
                 time.sleep(1 / self.sample_rate)
+
             print(f"Record finished! Captured packets: {packet_count}")
             return True
+
         except KeyboardInterrupt:
             print("Stopped by user")
             return False
         except Exception as e:
-            print(f"Recording error: {e}")
+            print(f"Recording error : {e}")
             return False
-        finally:
-            self.recording = False
 
     def decode(self):
-        """Converting bytes to movement X/Y"""
         if not self.raw_data:
-            print("No data to decode")
+            print("No data for decode")
             return
+
         print("Decoding data...")
         self.movements = []
         for ts, raw in self.raw_data:
@@ -95,9 +121,8 @@ class MouseVibrationAnalyzer:
         print(f"Decoded {len(self.movements)} movements")
 
     def analyze(self):
-        """Vibration analyze"""
         if not self.movements:
-            print("No data to analyze")
+            print("No data for analyze")
             return
 
         print("Analyzing data...")
@@ -106,17 +131,9 @@ class MouseVibrationAnalyzer:
         ys = np.array([m[2] for m in self.movements])
         magnitude = np.sqrt(xs**2 + ys**2)
 
-        # Интерполяция
-        t_uniform = np.linspace(timestamps[0], timestamps[-1], len(magnitude))
-        mag_uniform = np.interp(t_uniform, timestamps, magnitude)
-
-        fft_result = np.fft.fft(mag_uniform)
-        freqs = np.fft.fftfreq(len(fft_result), d=(t_uniform[1]-t_uniform[0]))
-
-        # Статистика
         mean_mag = np.mean(magnitude)
         std_mag = np.std(magnitude)
-        threshold = mean_mag + 2 * std_mag
+        threshold = mean_mag + 0.3 * std_mag
         vib_count = np.sum(magnitude > threshold)
 
         print(f"Средняя амплитуда: {mean_mag:.3f}")
@@ -124,8 +141,8 @@ class MouseVibrationAnalyzer:
         print(f"Порог вибраций: {threshold:.3f}")
         print(f"Обнаружено пиков: {vib_count}")
 
-        # Визуализация
         plt.figure(figsize=(15, 10))
+
         plt.subplot(3, 1, 1)
         plt.plot(timestamps, xs, label="X", alpha=0.7)
         plt.plot(timestamps, ys, label="Y", alpha=0.7)
@@ -138,18 +155,19 @@ class MouseVibrationAnalyzer:
         plt.title("Магнитуда движений")
         plt.grid(True)
 
+        fft_result = np.fft.fft(magnitude)
+        freqs = np.fft.fftfreq(len(fft_result), d=(timestamps[1]-timestamps[0]))
         plt.subplot(3, 1, 3)
         plt.plot(freqs[freqs > 0], np.abs(fft_result)[freqs > 0])
         plt.title("Частотный спектр вибраций")
         plt.xlabel("Частота (Гц)")
         plt.ylabel("Амплитуда")
         plt.grid(True)
+
         plt.tight_layout()
         plt.show()
-        
 
     def save(self):
-        """Saving to json"""
         if not self.raw_data:
             return
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -161,15 +179,16 @@ class MouseVibrationAnalyzer:
                     "packets": len(self.raw_data),
                     "vendor_id": self.vendor_id,
                     "product_id": self.product_id,
+                    "usage_page": self.usage_page,
+                    "usage": self.usage,
                 },
                 "raw_data": [
                     {"t": t, "bytes": raw.hex()} for t, raw in self.raw_data
                 ]
             }, f, indent=2)
-        print(f"Data saved to: {filename}")
+        print(f"Data saved: {filename}")
 
-    def run(self, duration=15):
-        """Full cycle"""
+    def run(self, duration=10):
         if not self.find_mouse(): return
         if not self.connect(): return
         if not self.record_raw(duration): return
@@ -184,6 +203,6 @@ if __name__ == "__main__":
     try:
         analyzer.run(duration=10)
     except KeyboardInterrupt:
-        print("\nStopped by user")
+        print("\n Stopped by user")
     finally:
-        print("\nFinished")
+        print("\n Done")
