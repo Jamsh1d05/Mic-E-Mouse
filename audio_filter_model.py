@@ -12,4 +12,4 @@ with torch.no_grad():
     output = model(signal)
 
 torchaudio.save("filtered_output.wav", output, 16000)
-print("✅filtered_output.wav SAVED!")
+print("filtered_output.wav SAVED!")

@@ -21,4 +21,4 @@ devices = hid.enumerate()
 for d in devices:
     clean = make_json_safe(d)
     print(json.dumps(clean, indent=2, ensure_ascii=False))
-    print("-" * 70)
+    print("-" * 70) 

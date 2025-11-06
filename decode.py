@@ -1,7 +1,7 @@
 import json
 import matplotlib.pyplot as plt
 
-with open("mouse_data_20251030_113713.json", "r") as f:
+with open("raw_data/mouse_data_20251031_093818.json", "r") as f:
     data = json.load(f)
 
 x = []

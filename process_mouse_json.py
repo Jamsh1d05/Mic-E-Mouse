@@ -99,10 +99,8 @@ def main(path_json, out_prefix="prepared", fs_target=1000):
         print("Bandpass filtering failed (maybe too few samples). Using raw uniform signal.")
         mag_bp = mag_u
 
-    # Plot
     plot_time_and_spectrogram(t_u, mag_bp, fs_target, title_prefix=Path(path_json).stem)
 
-    # Save for downstream analysis
     save_prepared(t_u, mag_bp, out_prefix)
     print(f"Prepared data saved to {out_prefix}.npz")
 
